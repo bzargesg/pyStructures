@@ -12,11 +12,14 @@ class IndexIntException(Exception):
         message = "Index is not an Int"
         super().__init__(message)
 
+# implements native list to give list that has definite size and no dynamic resizing
+
 
 class LimitedArray:
     storage = []
     limit = 0
 
+    # initialize an empty array of size limit
     def __init__(self, limit):
         self.storage = [None for num in range(limit)]
         self.limit = limit
@@ -41,6 +44,8 @@ class LimitedArray:
 
     def print(self):
         return (self.storage)
+
+# simple hashing function takes in string to hash and length to hash within
 
 
 def getIndexBelowMaxForKey(str, max):
