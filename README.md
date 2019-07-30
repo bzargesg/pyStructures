@@ -17,9 +17,9 @@ python3 -m unittest -v test.py
 
 ### Testing break down
 
-1. Hash_Table_Tests
-  -tests insertion with collision
-  -tests retrieval of value by key, including collision spot
+1. Hash_Table_Tests\
+  -tests insertion with collision\
+  -tests retrieval of value by key, including collision spot\
   -tests removal of key value pair
 2. Linked_List_Tests
 3. Set_Tests
