@@ -8,20 +8,39 @@ class Hash_table_test(unittest.TestCase):
         Hashtable.testing = True
 
     def test_insert(self):
-        print("Insert Tests:")
         hashT = Hashtable()
         hashT.insert('stuff', 7)
         index = hashTableHelpers.getIndexBelowMaxForKey('stuff', 8)
         arrVal = hashTableHelpers.LimitedArray(8)
         arrVal.set(index, [("stuff", 7)])
         self.assertListEqual(hashT.storage.storage,
-                             arrVal.storage, "testing insert")
+                             arrVal.storage, "test single insertion")
+        hashT.insert('junk', 8)
+        index = hashTableHelpers.getIndexBelowMaxForKey('junk', 8)
+        arrVal.get(index).append(("junk", 8))
+        self.assertListEqual(hashT.storage.storage,
+                             arrVal.storage, "testing insert collision")
 
-    # def retrieve_test(self):
-    #     print("Retrieve Tests:")
+    def test_retrieve(self):
+        hashT = Hashtable()
+        hashT.insert('stuff', 7)
+        hashT.insert('junk', 8)
+        hashT.insert('hiya', 9)
+        hashT.insert('doodly', 35)
+        self.assertIs(hashT.retrieve('hiya'), 9, 'retrieve Value')
+        self.assertIs(hashT.retrieve('junk'), 8, 'retrieve collision value')
 
-    # def remove_test(self):
-    #     print("Remove Tests:")
+    def test_remove(self):
+        hashT = Hashtable()
+        hashT.insert('stuff', 7)
+        hashT.insert('junk', 8)
+        hashT.insert('hiya', 9)
+        hashT.insert('doodly', 35)
+        hashT.remove('stuff')
+        expectedVal = [[('junk', 8)], None, None, [
+            ('hiya', 9)], None, [('doodly', 35)], None, None]
+        self.assertListEqual(hashT.storage.storage,
+                             expectedVal, "Deleted stuff at index 1")
 
 
 if __name__ == "__main__":

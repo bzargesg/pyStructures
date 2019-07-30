@@ -18,19 +18,25 @@ class Hashtable:
         self.size = self.size+1
         index = hashTableHelpers.getIndexBelowMaxForKey(key, self.limit)
         position = self.storage.get(index)
-        # print("position true?:", bool(position))
         if(position):
             position.append(tuple((key, value)))
         else:
-            print("b4 insert", self.storage.print())
             self.storage.set(index, [tuple((key, value))])
-            print("after insert", self.storage.print())
 
     def retrieve(self, key):
-        print(self.storage)
+        index = hashTableHelpers.getIndexBelowMaxForKey(key, self.limit)
+        bucket = self.storage.get(index)
+        return [value[1] for value in bucket if value[0] == key][0]
 
     def remove(self, key):
         self.size = self.size - 1
+        index = hashTableHelpers.getIndexBelowMaxForKey(key, self.limit)
+        bucket = self.storage.get(index)
+        [value[1] for value in bucket if value[0] == key][0]
+        for index in range(len(bucket)):
+            if(bucket[index][0] == key):
+                bucket.pop(index)
+                break
 
     def resize(self):
         print(self.storage)
