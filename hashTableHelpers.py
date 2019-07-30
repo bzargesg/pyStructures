@@ -1,5 +1,4 @@
 import ctypes
-import math
 
 
 class LimitedArray:
@@ -29,7 +28,7 @@ class LimitedArray:
 def getIndexBelowMaxForKey(str, max):
     hashval = 0
     for char in str:
-        hashval = ctypes.c_int(hashval << 5 ^ 0).value + hash + ord(char)
+        hashval = ctypes.c_int(hashval << 5 ^ 0).value + hashval + ord(char)
         hashval = hashval & hashval
-        hashval = math.fabs(hashval)
+        hashval = abs(hashval)
     return hashval % max
