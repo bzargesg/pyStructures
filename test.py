@@ -1,45 +1,60 @@
 import unittest
 from linkedList import LinkedList
 from hashTable import Hashtable
+from tree import Tree
 import hashTableHelpers
 
 
-class Linked_List_Test(unittest.TestCase):
+class Tree_Test(unittest.TestCase):
     def setUp(self):
-        LinkedList.testing = True
+        Tree.testing = True
 
-    def test_LL_insert(self):
-        ll = LinkedList(5)
-        ll.insert(3)
-        ll.insert(1)
-        self.assertIs(ll.val, 5, 'Head value correct')
-        self.assertIs(ll.nextNode.val, 3, '2nd Node value correct')
-        self.assertIs(ll.nextNode.nextNode.val, 1, '3rd node value correct')
+    def test_insert(self):
+        a = Tree('a')
+        b = a.add_child('b')
+        c = a.add_child('c')
+        d = b.add_child('d')
+        e = b.add_child('e')
+        f = c.add_child('f')
+        g = c.add_child('g')
+        self.assertIn(b, a.children)
+        self.assertIn(c, a.children)
+# class Linked_List_Test(unittest.TestCase):
+#    def setUp(self):
+#         LinkedList.testing = True
 
-    def test_LL_delete_head(self):
-        ll = LinkedList(5)
-        ll.insert(3)
-        ll.insert(1)
-        ll.delete(5)
-        self.assertIs(ll.val, 3, 'Head value correct after delete')
+#     def test_LL_insert(self):
+#         ll = LinkedList(5)
+#         ll.insert(3)
+#         ll.insert(1)
+#         self.assertIs(ll.val, 5, 'Head value correct')
+#         self.assertIs(ll.nextNode.val, 3, '2nd Node value correct')
+#         self.assertIs(ll.nextNode.nextNode.val, 1, '3rd node value correct')
 
-    def test_LL_delete_mid(self):
-        ll = LinkedList(5)
-        ll.insert(3)
-        ll.insert(1)
-        ll.delete(3)
-        self.assertIs(ll.val, 5, 'Head correct after mid delete')
-        self.assertIs(ll.nextNode.val, 1, 'tail correct after mid delete')
+#     def test_LL_delete_head(self):
+#         ll = LinkedList(5)
+#         ll.insert(3)
+#         ll.insert(1)
+#         ll.delete(5)
+#         self.assertIs(ll.val, 3, 'Head value correct after delete')
 
-    def test_LL_delete_tail(self):
-        ll = LinkedList(5)
-        ll.insert(3)
-        ll.insert(1)
-        ll.delete(1)
-        self.assertIs(ll.val, 5, 'Head correct after mid delete')
-        self.assertIs(ll.nextNode.val, 3, 'tail correct after mid delete')
-        self.assertIs(ll.nextNode.nextNode, None,
-                      'tail correct after mid delete')
+#     def test_LL_delete_mid(self):
+#         ll = LinkedList(5)
+#         ll.insert(3)
+#         ll.insert(1)
+#         ll.delete(3)
+#         self.assertIs(ll.val, 5, 'Head correct after mid delete')
+#         self.assertIs(ll.nextNode.val, 1, 'tail correct after mid delete')
+
+#     def test_LL_delete_tail(self):
+#         ll = LinkedList(5)
+#         ll.insert(3)
+#         ll.insert(1)
+#         ll.delete(1)
+#         self.assertIs(ll.val, 5, 'Head correct after mid delete')
+#         self.assertIs(ll.nextNode.val, 3, 'tail correct after mid delete')
+#         self.assertIs(ll.nextNode.nextNode, None,
+#                       'tail correct after mid delete')
 
 # class Hash_Table_Tests(unittest.TestCase):
 #     def setUp(self):
